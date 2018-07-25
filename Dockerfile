@@ -1,16 +1,16 @@
-FROM python:3.5
-MAINTAINER Benjamin Hutchins <ben@hutchins.co>
+FROM python:3.5-stretch
+MAINTAINER Joost Coelingh <jcoelingh@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
 # Version of Nginx to install
-ENV NGINX_VERSION 1.9.7-1~jessie
+#ENV NGINX_VERSION 1.15.2-1~jessie
 
-RUN apt-key adv \
-  --keyserver hkp://pgp.mit.edu:80 \
-  --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
+#RUN apt-key adv \
+#  --keyserver hkp://pgp.mit.edu:80 \
+#  --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
 
-RUN echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list
+#RUN echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list
 
 RUN set -x; \
     apt-get update \
@@ -18,7 +18,7 @@ RUN set -x; \
         locales \
         gettext \
         ca-certificates \
-        nginx=${NGINX_VERSION} \
+        nginx \
     && rm -rf /var/lib/apt/lists/*
 
 RUN locale-gen en_US.UTF-8 && dpkg-reconfigure locales
