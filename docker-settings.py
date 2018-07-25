@@ -32,8 +32,8 @@ SECRET_KEY = os.getenv('TAIGA_SECRET_KEY')
 if os.getenv('RABBIT_PORT') is not None and os.getenv('REDIS_PORT') is not None:
     from .celery import *
 
-    BROKER_URL = 'amqp://guest:guest@rabbit:5672'
-    RESULT_BACKEND = 'redis://redis:6379/0'
+    broker_url = 'amqp://guest:guest@rabbit:5672'
+    result_backend = 'redis://redis:6379/0'
     CELERY_ENABLED = True
 
     EVENTS_PUSH_BACKEND = "taiga.events.backends.rabbitmq.EventsPushBackend"
